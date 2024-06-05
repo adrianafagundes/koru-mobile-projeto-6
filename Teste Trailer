@@ -1,0 +1,61 @@
+import 'package:flutter_test/flutter_test.dart';
+import 'package:meu_app/meu_codigo.dart';
+import 'package:faker/faker.dart';
+import 'package:integration_test/integration_test.dart';
+
+void main() {
+  group('Test trailer', () {
+    test('Test trailer example', () {
+      
+      var faker = new Faker();
+
+      expect(result, esperado);
+    });
+  });
+}
+
+class Filmes
+
+
+  faker.internet.email();
+
+  faker.internet.userName();
+  
+  faker.person.name();
+
+  await binding.traceAction(
+  () async {
+    
+    await tester.scrollUntilVisible(
+      itemFinder,
+      500.0,
+      scrollable: listFinder,
+    );
+  },
+  reportKey: 'scrolling_timeline',
+);
+
+flutter drive \
+  --driver=test_driver/perf_driver.dart \
+  --target=integration_test/scrolling_test.dart \
+  --profile
+
+Future<void> main() {
+  return integrationDriver(
+    responseDataCallback: (data) async {
+      if (data != null) {
+        final timeline = driver.Timeline.fromJson(
+          data['scrolling_timeline'] as Map<String, dynamic>,
+        );
+
+              final summary = driver.TimelineSummary.summarize(timeline);
+
+                await summary.writeTimelineToFile(
+          'scrolling_timeline',
+          pretty: true,
+          includeSummary: true,
+        );
+      }
+    },
+  );
+}
